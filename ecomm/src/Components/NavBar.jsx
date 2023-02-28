@@ -1,4 +1,4 @@
-import { Grid, Button, TextField,useMediaQuery,useTheme,InputAdornment} from '@mui/material'
+import { Grid, Button, TextField, useMediaQuery, useTheme, InputAdornment, Drawer } from '@mui/material'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -8,9 +8,41 @@ const NavBar = () => {
     const theme = useTheme()
     const isSmallScreen = useMediaQuery(theme.breakpoints.up('sm'))
 
+    const [drawer, setDrawer] = React.useState(false);
+
+    const toggleDrawer = () => {
+        setDrawer(true);
+    };
+
     return (
-        <div style={{marginTop:"2rem"}}>
-            <Grid textAlign={"center"} fontFamily="Roboto" container justifyContent={isSmallScreen?"center":"space-between"}>
+        <div style={{ marginTop: "2rem" }}>
+            <Drawer
+                anchor={'left'}
+                open={drawer}
+
+                onClose={() => setDrawer(false)}
+            >
+                <div style={{padding:"2rem"}}>
+
+           
+                <Grid md={1} item>
+                    <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Men's</Button>
+                </Grid>
+                <Grid md={1} item>
+                    <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Women's</Button>
+
+                </Grid>
+                <Grid md={1} item>
+                    <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Electronics</Button>
+                </Grid>
+                <Grid md={1} item>
+                    <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Jewelry</Button>
+                </Grid>
+             </div>
+            </Drawer>
+
+
+            <Grid textAlign={"center"} fontFamily="Roboto" container justifyContent={isSmallScreen ? "center" : "space-between"}>
                 <Grid item s={2} xs={2} md={2}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 64 64" fill="none">
                         <path d="M44.72 9.09333C44.72 6.28036 42.4396 4 39.6267 4C36.8137 4 34.5333 6.28036 34.5333 9.09333V21.8133C34.5333 24.6263 36.8137 26.9067 39.6267 26.9067C42.4396 26.9067 44.72 24.6263 44.72 21.8133V9.09333Z" stroke="#292929" stroke-width="5.09333" stroke-miterlimit="10" />
@@ -29,31 +61,31 @@ const NavBar = () => {
                 </Grid>
 
 
-                {isSmallScreen?
-                <>
-                <Grid md={1} item>
-                    <Button sx={{ "&:hover": { backgroundColor: "transparent" },marginTop:"0.3rem" }}>Men's</Button>
-                </Grid>
-                <Grid md={1} item>
-                    <Button sx={{ "&:hover": { backgroundColor: "transparent" },marginTop:"0.3rem"  }}>Women's</Button>
+                {isSmallScreen ?
+                    <>
+                        <Grid md={1} item>
+                            <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Men's</Button>
+                        </Grid>
+                        <Grid md={1} item>
+                            <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Women's</Button>
 
-                </Grid>
-                <Grid md={1} item>
-                    <Button sx={{ "&:hover": { backgroundColor: "transparent" },marginTop:"0.3rem"  }}>Electronics</Button>
-                </Grid>
-                <Grid md={1} item>
-                    <Button sx={{ "&:hover": { backgroundColor: "transparent" },marginTop:"0.3rem"  }}>Jewelry</Button>
-                </Grid></>:
-                null}
+                        </Grid>
+                        <Grid md={1} item>
+                            <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Electronics</Button>
+                        </Grid>
+                        <Grid md={1} item>
+                            <Button sx={{ "&:hover": { backgroundColor: "transparent" }, marginTop: "0.3rem" }}>Jewelry</Button>
+                        </Grid></> :
+                    null}
                 <Grid md={2} s={2} xs={6} item>
-                    <TextField size="small" sx={{marginTop:isSmallScreen?"0.1rem":"0.5rem" }} placeholder='Search' variant="standard"
+                    <TextField size="small" sx={{ marginTop: isSmallScreen ? "0.1rem" : "0.5rem" }} placeholder='Search' variant="standard"
                         InputProps={{
                             startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
                         }} />
                 </Grid>
-                {isSmallScreen===false?<Grid xs={2}  item>
-                    <MenuIcon sx={{ fontSize: 38,marginTop:"0.5rem" }}/>
-                </Grid>:null}
+                {isSmallScreen === false ? <Grid xs={2} item>
+                    <MenuIcon onClick={toggleDrawer}     sx={{ fontSize: 38, marginTop: "0.5rem" }} />
+                </Grid> : null}
 
 
             </Grid>

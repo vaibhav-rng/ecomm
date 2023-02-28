@@ -4,7 +4,7 @@ import React from 'react'
 const TopBar = () => {
     return (
         <div>
-            <Grid container justifyContent={"space-between"}>
+            <Grid  container justifyContent={"space-between"}>
                 <Grid item>
                    <Typography fontFamily="Roboto" variant=''>location</Typography> 
                 </Grid>
