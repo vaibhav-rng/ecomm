@@ -1,14 +1,17 @@
 import React from 'react'
 import img1 from '../Images/homePageImg.png';
-import { Box, Grid, Typography, createTheme, ThemeProvider,responsiveFontSizes } from '@mui/material';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box, Grid, Typography, useMediaQuery, createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material';
+
 
 
 let theme = createTheme();
+theme.typography.h2.fontSize = "2rem";
 theme = responsiveFontSizes(theme);
 
 
 const Image = () => {
+
+
     return (
         <>
             <ThemeProvider theme={theme}>
